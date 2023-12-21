@@ -7,14 +7,7 @@
 
 import SwiftUI
 
-struct HomeViewModelView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct HomeViewModelView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeViewModelView()
-    }
+class HomeViewModelView: ObservableObject {
+    @Published var activeTab: Tab = .home
+    @Published var tabShapePosition: CGPoint = .zero
 }

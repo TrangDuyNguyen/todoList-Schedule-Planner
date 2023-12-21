@@ -8,8 +8,41 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @StateObject var viewModel = RegisterViewModelView()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack(alignment: .leading) {
+                VStack(alignment: .leading) {
+                    Text("Todo List")
+                        .font(.custom("Ubuntu", size: 24))
+                        .fontWeight(.bold)
+                    Text("Register")
+                        .font(.custom("Ubuntu", size: 22))
+                        .fontWeight(.regular)
+                }
+                .vAlign(.top)
+                
+                TextField("Email", text: $viewModel.email)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                SecureField("Password", text: $viewModel.password)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                SecureField("Repassword", text: $viewModel.rePassword)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Button(action: {
+                    viewModel.register()
+                }) {
+                    Text("Register")
+                }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                .vAlign(.top)
+
+            }
+            .padding(.horizontal, 10)
+        }
     }
 }
 

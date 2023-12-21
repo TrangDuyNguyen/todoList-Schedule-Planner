@@ -7,14 +7,19 @@
 
 import SwiftUI
 
-struct Categorite: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+struct Categorite: Codable, Hashable, Identifiable {
+    var id: String
+    var tab: String
 }
 
-struct Categorite_Previews: PreviewProvider {
-    static var previews: some View {
-        Categorite()
-    }
-}
+var tabsItems = [
+    Categorite(id: UUID().uuidString, tab: "All"),
+
+    Categorite(id: UUID().uuidString, tab: "Work"),
+
+    Categorite(id: UUID().uuidString, tab: "Personal"),
+
+    Categorite(id: UUID().uuidString, tab: "Wishlist"),
+
+    Categorite(id: UUID().uuidString, tab: "Birthday")
+]

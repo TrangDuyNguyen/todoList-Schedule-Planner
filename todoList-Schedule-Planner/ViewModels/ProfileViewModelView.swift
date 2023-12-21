@@ -6,15 +6,32 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
+import FirebaseAuth
 
-struct ProfileViewModelView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class ProfileViewModelView: ObservableObject {
+    @StateObject private var authManager = AuthManager()
+    @Published var user: User? = nil
+    
+    init() {}
+    
+    func fetchUser() {
+        guard let userId = Auth.auth().currentUser?.uid else { return  }
+        
+        let db = Firestore.firestore()
+        db.collection("users")
+            .document(userId)
+            .getDocument {[weak self] snapshot, error in
+                guard let data = snapshot?.data(), error == nil else { return }
+                DispatchQueue.main.async {
+                    self?.user = User(id: data["id"] as? String ?? "",
+                                      email: data["email"] as? String ?? "",
+                                      join: data["join"] as? TimeInterval ?? Date().timeIntervalSince1970)
+                }
+            }
     }
-}
-
-struct ProfileViewModelView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileViewModelView()
+    
+    func logOut() {
+        authManager.signOut()
     }
 }

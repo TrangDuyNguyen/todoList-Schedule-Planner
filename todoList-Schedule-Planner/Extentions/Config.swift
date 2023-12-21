@@ -7,14 +7,7 @@
 
 import SwiftUI
 
-struct Config: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct Config_Previews: PreviewProvider {
-    static var previews: some View {
-        Config()
-    }
+struct Config {
+    public static let sessionFolderName = "Session"
+    public static let sessionFileName = "session.json"
 }

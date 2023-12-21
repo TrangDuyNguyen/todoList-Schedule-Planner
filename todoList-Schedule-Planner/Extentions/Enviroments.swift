@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-struct Enviroments: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct Enviroments_Previews: PreviewProvider {
-    static var previews: some View {
-        Enviroments()
-    }
+private struct ViewModelKey: EnvironmentKey {
+    static let defaultValue: LoginViewModelView = LoginViewModelView()
 }

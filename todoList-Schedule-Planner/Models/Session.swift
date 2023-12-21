@@ -6,15 +6,28 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import Combine
 
-struct Session: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class Session: ObservableObject {
+    static var shared = Session()
+    
+    // Thông tin đăng nhập
+    var isLoggedIn: Bool {
+        return Auth.auth().currentUser != nil
     }
+    // Các thông tin khác của ứng dụng
+    var appVersion: String
+    var theme: AppTheme
+    
+    init() {
+        self.appVersion = "1.0.0"
+        self.theme = .light
+    }
+    
 }
 
-struct Session_Previews: PreviewProvider {
-    static var previews: some View {
-        Session()
-    }
+enum AppTheme {
+    case light
+    case dark
 }

@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
-
+import FirebaseCore
 @main
 struct todoList_Schedule_PlannerApp: App {
+    init (){
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()

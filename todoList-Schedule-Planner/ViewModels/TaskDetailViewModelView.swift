@@ -7,14 +7,11 @@
 
 import SwiftUI
 
-struct TaskDetailViewModelView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class TaskDetailViewModelView: ObservableObject {
+    @Published var task: Task
+    
+    init(task: Task) {
+        self.task = task
     }
 }
 
-struct TaskDetailViewModelView_Previews: PreviewProvider {
-    static var previews: some View {
-        TaskDetailViewModelView()
-    }
-}

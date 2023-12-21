@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
+import SwiftKeychainWrapper
 
-struct KeychainHelper: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct KeychainHelper {
+    static let emailKey = "userEmail"
+
+    static func saveUserInfo(email: String) {
+        KeychainWrapper.standard.set(email, forKey: emailKey)
     }
-}
 
-struct KeychainHelper_Previews: PreviewProvider {
-    static var previews: some View {
-        KeychainHelper()
+    static func loadUserInfo() -> String? {
+        return KeychainWrapper.standard.string(forKey: emailKey)
+    }
+    
+    static func removeUserInfo() {
+        KeychainWrapper.standard.removeObject(forKey: emailKey)
     }
 }

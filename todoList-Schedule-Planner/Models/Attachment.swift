@@ -7,14 +7,8 @@
 
 import SwiftUI
 
-struct Attachment: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct Attachment_Previews: PreviewProvider {
-    static var previews: some View {
-        Attachment()
-    }
+struct Attachment: Codable, Hashable, Identifiable {
+    var id: String
+    var filename: String
+    var fileUrl: String
 }

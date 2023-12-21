@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
-
-struct ContentViewModelView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+import FirebaseAuth
+class ContentViewModelView: ObservableObject {
+    @Published var curentUserId: String = ""
+    private var handler: AuthStateDidChangeListenerHandle?
+    init() {
+        self.handler = Auth.auth().addStateDidChangeListener {[weak self] _, user in
+            DispatchQueue.main.async {
+                self?.curentUserId = user?.uid ?? ""
+            }
+        }
     }
-}
-
-struct ContentViewModelView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentViewModelView()
+    public var isSignInBool: Bool {
+        return Auth.auth().currentUser != nil
     }
 }
